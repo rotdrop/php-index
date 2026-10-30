@@ -1,8 +1,8 @@
 <?php
 
-namespace malkusch\index\Iterator;
+namespace rotdrop\index\Iterator;
 
-use malkusch\index\Result;
+use rotdrop\index\Result;
 
 /**
  * Iterator for Result Objects

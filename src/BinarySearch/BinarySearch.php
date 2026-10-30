@@ -1,10 +1,10 @@
 <?php
 
-namespace malkusch\index\BinarySearch;
+namespace rotdrop\index\BinarySearch;
 
-use malkusch\index\Exceptions\IOIndexException;
-use malkusch\index\Index;
-use malkusch\index\Result;
+use rotdrop\index\Exceptions\IOIndexException;
+use rotdrop\index\Index;
+use rotdrop\index\Result;
 
 /**
  * Binary search

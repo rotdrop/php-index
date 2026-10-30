@@ -1,10 +1,10 @@
 <?php
 
-namespace malkusch\index\FixedSize;
+namespace rotdrop\index\FixedSize;
 
-use malkusch\index\Exceptions\ReadDataIndexException;
-use malkusch\index\Parser\Parser;
-use malkusch\index\Result;
+use rotdrop\index\Exceptions\ReadDataIndexException;
+use rotdrop\index\Parser\Parser;
+use rotdrop\index\Result;
 
 /**
  * FixedSizeIndex parser

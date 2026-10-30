@@ -1,11 +1,11 @@
 <?php
 
-namespace malkusch\index\Iterator;
+namespace rotdrop\index\Iterator;
 
-use malkusch\index\BinarySearch\KeyReader;
-use malkusch\index\Index;
-use malkusch\index\Parser\Parser;
-use malkusch\index\Result;
+use rotdrop\index\BinarySearch\KeyReader;
+use rotdrop\index\Index;
+use rotdrop\index\Parser\Parser;
+use rotdrop\index\Result;
 
 /**
  * Index Iterator

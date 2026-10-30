@@ -1,10 +1,10 @@
 <?php
 
-namespace malkusch\index\test;
+namespace rotdrop\index\test;
 
 use PHPUnit\Framework\Attributes\DataProvider;
-use malkusch\index\Index;
-use malkusch\index\test\Generator\XMLIndexGenerator;
+use rotdrop\index\Index;
+use rotdrop\index\test\Generator\XMLIndexGenerator;
 
 
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace malkusch\index\test;
+namespace rotdrop\index\test;
 
 use PHPUnit\Framework\Attributes\DataProvider;
-use malkusch\index\BinarySearch\BinarySearch;
-use malkusch\index\test\Generator\FixedSizeIndexGenerator;
-use malkusch\index\test\Generator\IndexGenerator;
+use rotdrop\index\BinarySearch\BinarySearch;
+use rotdrop\index\test\Generator\FixedSizeIndexGenerator;
+use rotdrop\index\test\Generator\IndexGenerator;
 
 
 /**

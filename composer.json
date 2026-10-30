@@ -1,12 +1,12 @@
 {
-    "name": "malkusch/php-index",
+    "name": "rotdrop/php-index",
     "type": "library",
     "description": "This library provides an API to perform binary search operations on a sorted index. The index can be a XML document, a CSV document, or an arbitrary text file where the key has a fixed position. You can easily implement your own index. This API comes handy on any sorted data structure where realtime search operations are necessary without the detour of a DBS import.",
     "keywords": [
         "index",
         "binary search"
     ],
-    "homepage": "https://github.com/malkusch/php-index",
+    "homepage": "https://github.com/rotdrop/php-index",
     "license": "WTFPL",
     "authors": [
         {
@@ -18,7 +18,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "malkusch\\index\\": "src/"
+            "rotdrop\\index\\": "src/"
         }
     },
     "require": {
@@ -31,7 +31,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "malkusch\\index\\test\\": "tests/classes/"
+            "rotdrop\\index\\test\\": "tests/classes/"
         }
     },
     "require-dev": {

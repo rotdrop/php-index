@@ -1,10 +1,10 @@
 <?php
 
-namespace malkusch\index\test\Generator;
+namespace rotdrop\index\test\Generator;
 
-use malkusch\index\Index;
-use malkusch\index\Xml\XmlIndex;
-use malkusch\index\test\Exceptions\CreateFileIndexTestException;
+use rotdrop\index\Index;
+use rotdrop\index\Xml\XmlIndex;
+use rotdrop\index\test\Exceptions\CreateFileIndexTestException;
 
 
 /**

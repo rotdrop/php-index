@@ -1,11 +1,11 @@
 <?php
 
-namespace malkusch\index\test;
+namespace rotdrop\index\test;
 
 use PHPUnit\Framework\Attributes\DataProvider;
-use malkusch\index\File\File;
-use malkusch\index\FixedSize\FixedSizeIndex;
-use malkusch\index\test\Generator\FixedSizeIndexGenerator;
+use rotdrop\index\File\File;
+use rotdrop\index\FixedSize\FixedSizeIndex;
+use rotdrop\index\test\Generator\FixedSizeIndexGenerator;
 
 
 /**

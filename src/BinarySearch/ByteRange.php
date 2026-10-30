@@ -1,8 +1,8 @@
 <?php
 
-namespace malkusch\index\BinarySearch;
+namespace rotdrop\index\BinarySearch;
 
-use malkusch\index\Range;
+use rotdrop\index\Range;
 
 /**
  * Range for the binary search

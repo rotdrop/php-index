@@ -1,8 +1,8 @@
 <?php
 
-namespace malkusch\index\Exceptions;
+namespace rotdrop\index\Exceptions;
 
-use malkusch\index\File\File;
+use rotdrop\index\File\File;
 
 /**
  * File doesn't exist

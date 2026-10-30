@@ -1,10 +1,10 @@
 <?php
 
-namespace malkusch\index\Parser;
+namespace rotdrop\index\Parser;
 
-use malkusch\index\Exceptions\ReadDataIndexException;
-use malkusch\index\Index;
-use malkusch\index\Result;
+use rotdrop\index\Exceptions\ReadDataIndexException;
+use rotdrop\index\Index;
+use rotdrop\index\Result;
 
 /**
  * Index parser
