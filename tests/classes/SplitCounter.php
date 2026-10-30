@@ -2,7 +2,6 @@
 
 namespace malkusch\index\test;
 
-use malkusch\index as index;
 
 /**
  * Counts the splits in a binary search
@@ -66,7 +65,7 @@ class SplitCounter implements \Countable
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return $this->count;
     }

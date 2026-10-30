@@ -2,9 +2,11 @@
 
 namespace malkusch\index\test;
 
-use malkusch\index as index;
+use PHPUnit\Framework\Attributes\DataProvider;
+use malkusch\index\File\File;
+use malkusch\index\FixedSize\FixedSizeIndex;
+use malkusch\index\test\Generator\FixedSizeIndexGenerator;
 
-require_once __DIR__ . "/../classes/AbstractTest.php";
 
 /**
  * Tests the xml index
@@ -19,12 +21,12 @@ class FixedSizeIndexTest extends AbstractTest
     /**
      * Tests getLineLength()
      * 
-     * @dataProvider provideTestGetLineLength
      * @see FixedSizeIndex::getLineLength()
      */
+    #[DataProvider('provideTestGetLineLength')]
     public function testGetLineLength($expectedLineLength, $file)
     {
-        $index = new index\FixedSizeIndex($file, 0, 1);
+        $index = new FixedSizeIndex($file, 0, 1);
         $this->assertEquals($expectedLineLength, $index->getLineLength());
     }
     
@@ -34,7 +36,7 @@ class FixedSizeIndexTest extends AbstractTest
      * @return array
      * @see testGetLineLength()
      */
-    public function provideTestGetLineLength()
+    public static function provideTestGetLineLength()
     {
         return array(
             array(5, __DIR__ . "/../index/fixedSize/one-line.txt"),
@@ -45,8 +47,8 @@ class FixedSizeIndexTest extends AbstractTest
     /**
      * Tests finding all keys with different index configurations 
      * 
-     * @dataProvider provideTestIndexConfiguration
      */
+    #[DataProvider('provideTestIndexConfiguration')]
     public function testIndexConfiguration($offset, $indexFieldLength, $length)
     {
         $generator = new FixedSizeIndexGenerator();
@@ -58,7 +60,7 @@ class FixedSizeIndexTest extends AbstractTest
         for ($key = 0; $key < $length; $key++) {
             $result  = $index->search($key);
             $this->assertNotNull($result, "key: $key");
-            $this->assertRegExp(
+            $this->assertMatchesRegularExpression(
                 '/data_' . $key . '_.*\$/s',
                 $result->getData(),
                 "key: $key"
@@ -67,11 +69,11 @@ class FixedSizeIndexTest extends AbstractTest
         }
     }
     
-    public function provideTestIndexConfiguration()
+    public static function provideTestIndexConfiguration()
     {
         $cases = array();
-        $lengths = array(1, 10, 100, index\File::DEFAULT_BLOCK_SIZE * 12);
-        $offsets = array(0, 1, index\File::DEFAULT_BLOCK_SIZE * 12);
+        $lengths = array(1, 10, 100, File::DEFAULT_BLOCK_SIZE * 12);
+        $offsets = array(0, 1, File::DEFAULT_BLOCK_SIZE * 12);
         foreach ($lengths as $length) {
             foreach ($offsets as $offset) {
                 $indexFieldLength = 1;

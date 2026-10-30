@@ -2,9 +2,10 @@
 
 namespace malkusch\index\test;
 
-use malkusch\index as index;
+use PHPUnit\Framework\Attributes\DataProvider;
+use malkusch\index\Index;
+use malkusch\index\test\Generator\XMLIndexGenerator;
 
-require_once __DIR__ . "/../classes/AbstractTest.php";
 
 
 /**
@@ -22,7 +23,6 @@ class XmlIndexTest extends AbstractTest
      *
      * @param XMLIndexGenerator $generator Index generator
      *
-     * @dataProvider provideTestSearch
      */
     /*
     public function testSearch(
@@ -49,7 +49,7 @@ class XmlIndexTest extends AbstractTest
                 1,
                 count($xml->{XMLIndexGenerator::ELEMENT_PAYLOAD})
             );
-            $this->assertRegExp(
+            $this->assertMatchesRegularExpression(
                 "/^data_{$key}_.+$/",
                 (string) $xml->{XMLIndexGenerator::ELEMENT_PAYLOAD}[0]
             );
@@ -68,7 +68,8 @@ class XmlIndexTest extends AbstractTest
      *
      * @return array
      */
-    public function provideTestSearch()
+    #[DataProvider('provideTestSearch')]
+    public static function provideTestSearch()
     {
         $cases  = array();
 

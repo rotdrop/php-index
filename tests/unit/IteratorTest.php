@@ -2,9 +2,16 @@
 
 namespace malkusch\index\test;
 
-use malkusch\index as index;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
+use malkusch\index\BinarySearch\KeyReader;
+use malkusch\index\Index;
+use malkusch\index\Iterator\IndexIterator;
+use malkusch\index\Iterator\IteratorUtil;
+use malkusch\index\Parser\Parser;
+use malkusch\index\test\Generator\FixedSizeIndexGenerator;
+use malkusch\index\test\Generator\IndexGenerator;
 
-require_once __DIR__ . "/../classes/AbstractTest.php";
 
 /**
  * Test for IndexIterator
@@ -13,15 +20,15 @@ require_once __DIR__ . "/../classes/AbstractTest.php";
  * @link bitcoin:1335STSwu9hST4vcMRppEPgENMHD2r1REK Donations
  * @license WTFPL
  */
-class IteratorTest extends \PHPUnit_Framework_TestCase
+class IteratorTest extends TestCase
 {
     
     /**
      * Tests that every found key is in the index
      * 
      * @param IndexGenerator $generator 
-     * @dataProvider provideLargerTestCases
      */
+    #[DataProvider('provideLargerTestCases')]
     public function testKeysInIndex(IndexGenerator $generator)
     {
         // each key should be in the generated index
@@ -29,22 +36,23 @@ class IteratorTest extends \PHPUnit_Framework_TestCase
             $this->assertTrue($generator->isKey($result->getKey()));
             
         }
+        $this->addToAssertionCount(1);
     }
     
     /**
      * Tests defined cases
      * 
-     * @dataProvider provideTestIteratorCases
      */
-    public function testIteratorCases(index\IndexIterator $iterator, array $expectedKeys)
+    #[DataProvider('provideTestIteratorCases')]
+    public function testIteratorCases(IndexIterator $iterator, array $expectedKeys)
     {
-        $this->assertEquals($expectedKeys, index\IteratorUtil::toKeysArray($iterator));
+        $this->assertEquals($expectedKeys, IteratorUtil::toKeysArray($iterator));
     }
     
     /**
      * Test cases 
      */
-    public function provideTestIteratorCases()
+    public static function provideTestIteratorCases()
     {
         $cases = array();
         
@@ -53,8 +61,8 @@ class IteratorTest extends \PHPUnit_Framework_TestCase
         $generator->setIndexLength(10);
         $index = $generator->getIndex();
         $iterator = $index->getIterator();
-        $iterator->setOffset($index->search(0)->getOffset(), index\Parser::HINT_RESULT_BOUNDARY);
-        $iterator->setDirection(index\KeyReader::DIRECTION_BACKWARD);
+        $iterator->setOffset($index->search(0)->getOffset(), Parser::HINT_RESULT_BOUNDARY);
+        $iterator->setDirection(KeyReader::DIRECTION_BACKWARD);
         $cases[] = array($iterator, array(0));
         
         // [0,9] -> [1,0]
@@ -62,8 +70,8 @@ class IteratorTest extends \PHPUnit_Framework_TestCase
         $generator->setIndexLength(10);
         $index = $generator->getIndex();
         $iterator = $index->getIterator();
-        $iterator->setOffset($index->search(1)->getOffset(), index\Parser::HINT_RESULT_BOUNDARY);
-        $iterator->setDirection(index\KeyReader::DIRECTION_BACKWARD);
+        $iterator->setOffset($index->search(1)->getOffset(), Parser::HINT_RESULT_BOUNDARY);
+        $iterator->setDirection(KeyReader::DIRECTION_BACKWARD);
         $cases[] = array($iterator, array(1, 0));
         
         // [0,9] -> [0]
@@ -72,7 +80,7 @@ class IteratorTest extends \PHPUnit_Framework_TestCase
         $index = $generator->getIndex();
         $iterator = $index->getIterator();
         $iterator->setOffset($index->search(1)->getOffset() - 1);
-        $iterator->setDirection(index\KeyReader::DIRECTION_BACKWARD);
+        $iterator->setDirection(KeyReader::DIRECTION_BACKWARD);
         $cases[] = array($iterator, array(0));
         
         // [0,9] -> [9,0]
@@ -80,8 +88,8 @@ class IteratorTest extends \PHPUnit_Framework_TestCase
         $generator->setIndexLength(10);
         $index = $generator->getIndex();
         $iterator = $index->getIterator();
-        $iterator->setOffset($index->search(9)->getOffset(), index\Parser::HINT_RESULT_BOUNDARY);
-        $iterator->setDirection(index\KeyReader::DIRECTION_BACKWARD);
+        $iterator->setOffset($index->search(9)->getOffset(), Parser::HINT_RESULT_BOUNDARY);
+        $iterator->setDirection(KeyReader::DIRECTION_BACKWARD);
         $cases[] = array($iterator, array(9, 8, 7, 6, 5, 4, 3, 2, 1, 0));
         
         // [0,9] -> [9,0]
@@ -89,7 +97,7 @@ class IteratorTest extends \PHPUnit_Framework_TestCase
         $generator->setIndexLength(10);
         $index = $generator->getIndex();
         $iterator = $index->getIterator();
-        $iterator->setDirection(index\KeyReader::DIRECTION_BACKWARD);
+        $iterator->setDirection(KeyReader::DIRECTION_BACKWARD);
         $cases[] = array($iterator, array(9, 8, 7, 6, 5, 4, 3, 2, 1, 0));
         
         // [0,9] -> [9,0]
@@ -98,7 +106,7 @@ class IteratorTest extends \PHPUnit_Framework_TestCase
         $index = $generator->getIndex();
         $iterator = $index->getIterator();
         $iterator->setOffset($index->search(9)->getOffset() - 1);
-        $iterator->setDirection(index\KeyReader::DIRECTION_BACKWARD);
+        $iterator->setDirection(KeyReader::DIRECTION_BACKWARD);
         $cases[] = array($iterator, array(8, 7, 6, 5, 4, 3, 2, 1, 0));
         
         // [0,9] -> [8,9]
@@ -106,7 +114,7 @@ class IteratorTest extends \PHPUnit_Framework_TestCase
         $generator->setIndexLength(10);
         $index = $generator->getIndex();
         $iterator = $index->getIterator();
-        $iterator->setOffset($index->search(8)->getOffset(), index\Parser::HINT_RESULT_BOUNDARY);
+        $iterator->setOffset($index->search(8)->getOffset(), Parser::HINT_RESULT_BOUNDARY);
         $cases[] = array($iterator, array(8, 9));
         
         // [0,9] -> [9]
@@ -114,7 +122,7 @@ class IteratorTest extends \PHPUnit_Framework_TestCase
         $generator->setIndexLength(10);
         $index = $generator->getIndex();
         $iterator = $index->getIterator();
-        $iterator->setOffset($index->search(9)->getOffset(), index\Parser::HINT_RESULT_BOUNDARY);
+        $iterator->setOffset($index->search(9)->getOffset(), Parser::HINT_RESULT_BOUNDARY);
         $cases[] = array($iterator, array(9));
         
         // [0,9] -> [9]
@@ -154,8 +162,8 @@ class IteratorTest extends \PHPUnit_Framework_TestCase
     /**
      * Tests backward iteration
      * 
-     * @dataProvider provideLargerTestCases
      */
+    #[DataProvider('provideLargerTestCases')]
     public function testBackward(IndexGenerator $generator)
     {
         $keys = array();
@@ -165,7 +173,7 @@ class IteratorTest extends \PHPUnit_Framework_TestCase
         }
         
         $backwardIterator = $generator->getIndex()->getIterator();
-        $backwardIterator->setDirection(index\KeyReader::DIRECTION_BACKWARD);
+        $backwardIterator->setDirection(KeyReader::DIRECTION_BACKWARD);
         
         // test that every found result was in the reversed forward iteration
         foreach ($backwardIterator as $result) {
@@ -187,8 +195,8 @@ class IteratorTest extends \PHPUnit_Framework_TestCase
      * Tests that every key of the index will be found
      * 
      * @param IndexGenerator $generator 
-     * @dataProvider provideLargerTestCases
      */
+    #[DataProvider('provideLargerTestCases')]
     public function testFindAllKeys(IndexGenerator $generator)
     {
         $expectedKeys = $generator->getKeys();
@@ -203,8 +211,8 @@ class IteratorTest extends \PHPUnit_Framework_TestCase
     /**
      * Tests iterating with a different offset
      * 
-     * @dataProvider provideTestCases
      */
+    #[DataProvider('provideTestCases')]
     public function testOffset(IndexGenerator $generator)
     {
         $index = $generator->getIndex();
@@ -227,7 +235,7 @@ class IteratorTest extends \PHPUnit_Framework_TestCase
             
             $iterator = $index->getIterator();
             if (isset($expectedResults[0]) && $offset == $expectedResults[0]->getOffset()) {
-                $iterator->setOffset($offset, index\Parser::HINT_RESULT_BOUNDARY);
+                $iterator->setOffset($offset, Parser::HINT_RESULT_BOUNDARY);
                 
             } else {
                 $iterator->setOffset($offset);
@@ -246,6 +254,7 @@ class IteratorTest extends \PHPUnit_Framework_TestCase
             $this->assertEquals($expectedArray, $resultArray, "not equal at offset $offset");
             
         }
+        $this->addToAssertionCount(1);
     }
     
     private function toPrimitiveResultArray($results)
@@ -263,7 +272,7 @@ class IteratorTest extends \PHPUnit_Framework_TestCase
      * 
      * @return array
      */
-    public function provideTestCases()
+    public static function provideTestCases()
     {
         $cases = array();
         // empty Index
@@ -294,9 +303,9 @@ class IteratorTest extends \PHPUnit_Framework_TestCase
      * 
      * @return array
      */
-    public function provideLargerTestCases()
+    public static function provideLargerTestCases()
     {
-        $cases = $this->provideTestCases();
+        $cases = self::provideTestCases();
         
         // 1000 entries
         $generator = new FixedSizeIndexGenerator();

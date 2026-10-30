@@ -2,9 +2,10 @@
 
 namespace malkusch\index\test;
 
-use malkusch\index as index;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
+use malkusch\index\Range;
 
-require_once __DIR__ . "/../classes/AbstractTest.php";
 
 /**
  * Test for Range
@@ -13,17 +14,17 @@ require_once __DIR__ . "/../classes/AbstractTest.php";
  * @link bitcoin:1335STSwu9hST4vcMRppEPgENMHD2r1REK Donations
  * @license WTFPL
  */
-class RangeTest extends \PHPUnit_Framework_TestCase
+class RangeTest extends TestCase
 {
     
     /**
      * Tests that the borders are contained by the range
      * 
-     * @dataProvider provideTestContains
      */
+    #[DataProvider('provideTestContains')]
     public function testInclusiveContains($min, $max)
     {
-        $range = new index\Range($min, $max);
+        $range = new Range($min, $max);
         $range->setInclusive(true);
 
         // Min
@@ -38,11 +39,11 @@ class RangeTest extends \PHPUnit_Framework_TestCase
     /**
      * Tests that the borders are not contained by the range
      * 
-     * @dataProvider provideTestContains
      */
+    #[DataProvider('provideTestContains')]
     public function testExclusiveContains($min, $max)
     {
-        $range = new index\Range($min, $max);
+        $range = new Range($min, $max);
         $range->setInclusive(false);
 
         $this->assertFalse($range->contains($min));
@@ -52,17 +53,18 @@ class RangeTest extends \PHPUnit_Framework_TestCase
     /**
      * Tests some values in the range
      * 
-     * @dataProvider provideTestContains
      */
+    #[DataProvider('provideTestContains')]
     public function testContains($min, $max)
     {
-        $range = new index\Range($min, $max);
+        $range = new Range($min, $max);
 
         $step = 0.1;
         for ($i = $min + $step; $i < $max; $i += $step) {
             $this->assertTrue($range->contains($i));
             
         }
+        $this->addToAssertionCount(1);
     }
     
     /**
@@ -70,11 +72,11 @@ class RangeTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetInclusive()
     {
-        $range = new index\Range(0, 0);
+        $range = new Range(0, 0);
         $range->setInclusive(true);
         $this->assertTrue($range->isInclusive());
         
-        $range = new index\Range(0, 0);
+        $range = new Range(0, 0);
         $range->setInclusive(false);
         $this->assertFalse($range->isInclusive());
     }
@@ -84,7 +86,7 @@ class RangeTest extends \PHPUnit_Framework_TestCase
      * 
      * @return array 
      */
-    public function provideTestContains()
+    public static function provideTestContains()
     {
         return array(
             array(0, 0),

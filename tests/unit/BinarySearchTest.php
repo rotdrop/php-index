@@ -2,9 +2,11 @@
 
 namespace malkusch\index\test;
 
-use malkusch\index as index;
+use PHPUnit\Framework\Attributes\DataProvider;
+use malkusch\index\BinarySearch\BinarySearch;
+use malkusch\index\test\Generator\FixedSizeIndexGenerator;
+use malkusch\index\test\Generator\IndexGenerator;
 
-require_once __DIR__ . "/../classes/AbstractTest.php";
 
 /**
  * Tests the class BinarySearch
@@ -25,6 +27,7 @@ class BinarySearchTest extends AbstractTest
     public function testIncreaseSectorCount()
     {
         $generator = new FixedSizeIndexGenerator();
+        $generator->setIndexLength(1);
         $oldReadLength = $generator->getIndex()->getKeyReader()->getReadLength();
         $expectedFactor = 3;
         
@@ -34,7 +37,7 @@ class BinarySearchTest extends AbstractTest
         
 
         $index = $generator->getIndex();
-        $binarySearch = new index\BinarySearch($index);
+        $binarySearch = new BinarySearch($index);
         $this->assertNotEmpty($binarySearch->search(3)->getData());
         
         $this->assertGreaterThanOrEqual(
@@ -46,8 +49,8 @@ class BinarySearchTest extends AbstractTest
     /**
      * Test for the search complexity
      * 
-     * @dataProvider provideTestComplexity
      */
+    #[DataProvider('provideTestComplexity')]
     public function testComplexity(IndexGenerator $generator)
     {
         $index = $generator->getIndex();
@@ -60,7 +63,7 @@ class BinarySearchTest extends AbstractTest
         }
     }
     
-    public function provideTestComplexity()
+    public static function provideTestComplexity()
     {
         $cases = array();
         
