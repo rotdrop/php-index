@@ -2,13 +2,9 @@
 
 namespace malkusch\index\test;
 
-use malkusch\index as index;
-
-/**
- * Setup autoloader
- */
-require_once __DIR__ . "/../autoloader/autoloader.php";
-require_once __DIR__ . "/../../autoloader/autoloader.php";
+use PHPUnit\Framework\TestCase;
+use malkusch\index\Index;
+use malkusch\index\test\Generator\IndexGenerator;
 
 
 /**
@@ -20,7 +16,7 @@ require_once __DIR__ . "/../../autoloader/autoloader.php";
  * @link bitcoin:1335STSwu9hST4vcMRppEPgENMHD2r1REK Donations
  * @license WTFPL
  */
-abstract class AbstractTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractTest extends TestCase
 {
 
     /**
@@ -38,6 +34,7 @@ abstract class AbstractTest extends \PHPUnit_Framework_TestCase
         SplitCounter $counter
     ) {
         if (\count($counter) == 0) {
+            $this->addToAssertionCount(1);
             return;
             
         }

@@ -2,9 +2,11 @@
 
 namespace malkusch\index\test;
 
-use malkusch\index as index;
+use PHPUnit\Framework\Attributes\DataProvider;
+use malkusch\index\Index;
+use malkusch\index\test\Generator\FixedSizeIndexGenerator;
+use malkusch\index\test\Generator\IndexGenerator;
 
-require_once __DIR__ . "/../classes/AbstractTest.php";
 
 /**
  * Tests an index
@@ -22,8 +24,8 @@ class IndexTest extends AbstractTest
      * @param IndexGenerator $generator Index generator
      *
      * @return void
-     * @dataProvider provideTestSearch
      */
+    #[DataProvider('provideTestSearch')]
     public function testSearch(IndexGenerator $generator)
     {
         $index = $generator->getIndex();
@@ -36,7 +38,7 @@ class IndexTest extends AbstractTest
                 . " length: {$generator->getIndexLength()}"
             );
             $expected = preg_quote($generator->generateData($key));
-            $this->assertRegExp("/$expected/", $result->getData());
+            $this->assertMatchesRegularExpression("/$expected/", $result->getData());
             
         }
     }
@@ -46,7 +48,7 @@ class IndexTest extends AbstractTest
      *
      * @return void
      */
-    public function provideTestSearch()
+    public static function provideTestSearch()
     {
         $cases = array();
         
@@ -80,9 +82,9 @@ class IndexTest extends AbstractTest
      * Tests that failing terminates
      *
      * @return void
-     * @dataProvider provideTestFailSearch
      */
-    public function testFailSearch(index\Index $index, $key)
+    #[DataProvider('provideTestFailSearch')]
+    public function testFailSearch(Index $index, $key)
     {
         $this->assertNull($index->search($key));
     }
@@ -92,7 +94,7 @@ class IndexTest extends AbstractTest
      *
      * @return void
      */
-    public function provideTestFailSearch()
+    public static function provideTestFailSearch()
     {
         $cases  = array();
         

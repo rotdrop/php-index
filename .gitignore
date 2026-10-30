@@ -1,2 +1,5 @@
 nbproject
 tests/unit/sandbox.php
+vendor/
+composer.lock
+.phpunit.cache/

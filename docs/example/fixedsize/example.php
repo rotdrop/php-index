@@ -11,12 +11,12 @@
  * @link      https://github.com/malkusch/php-index
  */
 
-use malkusch\index\FixedSizeIndex;
-use malkusch\index\IOIndexException;
-use malkusch\index\ReadDataIndexException;
+use malkusch\index\FixedSize\FixedSizeIndex;
+use malkusch\index\Exceptions\IOIndexException;
+use malkusch\index\Exceptions\ReadDataIndexException;
 
 // Include the autoloader
-require_once __DIR__ . "/../../../autoloader/autoloader.php";
+require_once __DIR__ . "/../../../vendor/autoload.php";
 
 try {
     // Define the index

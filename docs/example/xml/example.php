@@ -10,16 +10,16 @@
  * @link      https://github.com/malkusch/php-index
  */
 
-use malkusch\index\XMLIndex;
-use malkusch\index\IOIndexException;
-use malkusch\index\ReadDataIndexException;
+use malkusch\index\Xml\XmlIndex;
+use malkusch\index\Exceptions\IOIndexException;
+use malkusch\index\Exceptions\ReadDataIndexException;
 
 // Include the autoloader
-require_once __DIR__ . "/../../../autoloader/autoloader.php";
+require_once __DIR__ . "/../../../vendor/autoload.php";
 
 try {
     // Define the index
-    $index = new XMLIndex(
+    $index = new XmlIndex(
         __DIR__ . "/index.xml", // Index file
         "container", // Container element
         "index" // Index attribute of the container element
