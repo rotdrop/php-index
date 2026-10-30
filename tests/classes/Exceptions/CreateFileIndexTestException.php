@@ -1,6 +1,6 @@
 <?php
 
-namespace malkusch\index\test\Exceptions;
+namespace rotdrop\index\test\Exceptions;
 
 /**
  * Create text xml file fails

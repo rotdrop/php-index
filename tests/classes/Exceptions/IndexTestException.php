@@ -1,8 +1,8 @@
 <?php
 
-namespace malkusch\index\test\Exceptions;
+namespace rotdrop\index\test\Exceptions;
 
-use malkusch\index\Exceptions\IndexException;
+use rotdrop\index\Exceptions\IndexException;
 
 
 /**

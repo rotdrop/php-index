@@ -1,6 +1,6 @@
 <?php
 
-namespace malkusch\index\Exceptions;
+namespace rotdrop\index\Exceptions;
 
 /**
  * IO exception

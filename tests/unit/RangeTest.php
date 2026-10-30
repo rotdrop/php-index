@@ -1,10 +1,10 @@
 <?php
 
-namespace malkusch\index\test;
+namespace rotdrop\index\test;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use malkusch\index\Range;
+use rotdrop\index\Range;
 
 
 /**

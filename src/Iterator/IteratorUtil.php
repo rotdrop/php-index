@@ -1,6 +1,6 @@
 <?php
 
-namespace malkusch\index\Iterator;
+namespace rotdrop\index\Iterator;
 
 /**
  * Helper for ResultIterator

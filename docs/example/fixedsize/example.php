@@ -8,12 +8,12 @@
  * line.
  * 
  * @author    Markus Malkusch <markus@malkusch.de>
- * @link      https://github.com/malkusch/php-index
+ * @link      https://github.com/rotdrop/php-index
  */
 
-use malkusch\index\FixedSize\FixedSizeIndex;
-use malkusch\index\Exceptions\IOIndexException;
-use malkusch\index\Exceptions\ReadDataIndexException;
+use rotdrop\index\FixedSize\FixedSizeIndex;
+use rotdrop\index\Exceptions\IOIndexException;
+use rotdrop\index\Exceptions\ReadDataIndexException;
 
 // Include the autoloader
 require_once __DIR__ . "/../../../vendor/autoload.php";

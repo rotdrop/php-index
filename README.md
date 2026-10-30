@@ -14,7 +14,7 @@ Use [Composer](https://getcomposer.org/):
 ```json
 {
     "require": {
-        "malkusch/php-index": "~0.1"
+        "rotdrop/php-index": "dev-master"
     }
 }
 ```
@@ -37,4 +37,4 @@ If you like BAV and feel generous donate a few Bitcoins here:
 [1335STSwu9hST4vcMRppEPgENMHD2r1REK](bitcoin:1335STSwu9hST4vcMRppEPgENMHD2r1REK)
 
 
-[![Build Status](https://travis-ci.org/malkusch/php-index.svg)](https://travis-ci.org/malkusch/php-index)
+[![Tests](https://github.com/rotdrop/php-index/actions/workflows/tests.yml/badge.svg)](https://github.com/rotdrop/php-index/actions/workflows/tests.yml)

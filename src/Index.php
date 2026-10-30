@@ -1,16 +1,16 @@
 <?php
 
-namespace malkusch\index;
+namespace rotdrop\index;
 
-use malkusch\index\BinarySearch\BinarySearch;
-use malkusch\index\BinarySearch\KeyReader;
-use malkusch\index\Exceptions\FileExistsIOException;
-use malkusch\index\Exceptions\IOIndexException;
-use malkusch\index\Exceptions\ReadDataIndexException;
-use malkusch\index\File\File;
-use malkusch\index\Iterator\IndexIterator;
-use malkusch\index\Iterator\RangeIterator;
-use malkusch\index\Parser\Parser;
+use rotdrop\index\BinarySearch\BinarySearch;
+use rotdrop\index\BinarySearch\KeyReader;
+use rotdrop\index\Exceptions\FileExistsIOException;
+use rotdrop\index\Exceptions\IOIndexException;
+use rotdrop\index\Exceptions\ReadDataIndexException;
+use rotdrop\index\File\File;
+use rotdrop\index\Iterator\IndexIterator;
+use rotdrop\index\Iterator\RangeIterator;
+use rotdrop\index\Parser\Parser;
 
 /**
  * Index

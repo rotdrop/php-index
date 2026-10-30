@@ -1,6 +1,6 @@
 <?php
 
-namespace malkusch\index;
+namespace rotdrop\index;
 
 /**
  * Result

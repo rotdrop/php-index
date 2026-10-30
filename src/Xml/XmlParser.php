@@ -1,9 +1,9 @@
 <?php
 
-namespace malkusch\index\Xml;
+namespace rotdrop\index\Xml;
 
-use malkusch\index\Exceptions\ReadDataIndexException;
-use malkusch\index\Parser\Parser;
+use rotdrop\index\Exceptions\ReadDataIndexException;
+use rotdrop\index\Parser\Parser;
 
 /**
  * XML Parser to find an index in an attribute of a container element

@@ -1,16 +1,16 @@
 <?php
 
-namespace malkusch\index\test;
+namespace rotdrop\index\test;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use malkusch\index\BinarySearch\KeyReader;
-use malkusch\index\Index;
-use malkusch\index\Iterator\IndexIterator;
-use malkusch\index\Iterator\IteratorUtil;
-use malkusch\index\Parser\Parser;
-use malkusch\index\test\Generator\FixedSizeIndexGenerator;
-use malkusch\index\test\Generator\IndexGenerator;
+use rotdrop\index\BinarySearch\KeyReader;
+use rotdrop\index\Index;
+use rotdrop\index\Iterator\IndexIterator;
+use rotdrop\index\Iterator\IteratorUtil;
+use rotdrop\index\Parser\Parser;
+use rotdrop\index\test\Generator\FixedSizeIndexGenerator;
+use rotdrop\index\test\Generator\IndexGenerator;
 
 
 /**

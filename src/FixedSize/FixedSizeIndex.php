@@ -1,10 +1,10 @@
 <?php
 
-namespace malkusch\index\FixedSize;
+namespace rotdrop\index\FixedSize;
 
-use malkusch\index\Exceptions\FileExistsIOException;
-use malkusch\index\Exceptions\IOIndexException;
-use malkusch\index\Index;
+use rotdrop\index\Exceptions\FileExistsIOException;
+use rotdrop\index\Exceptions\IOIndexException;
+use rotdrop\index\Index;
 
 /**
  * Index in a plain text file.
