@@ -9,15 +9,15 @@ operations are necessary without the detour of a DBS import.
 
 # Installation
 
-Use [Composer](https://getcomposer.org/):
+Use [Composer](https://getcomposer.org/) to install the development version:
 
-```json
-{
-    "require": {
-        "rotdrop/php-index": "dev-master"
-    }
-}
+```sh
+composer require rotdrop/php-index:dev-master@dev
 ```
+
+The `@dev` stability flag allows this dependency's development branch without
+lowering the minimum stability for your entire project. A stable release is
+not available yet.
 
 
 # Usage
@@ -29,7 +29,9 @@ implemented index structure.
 # License and author
 
 This project is free and under WTFPL.
-Responsable for this project is Markus Malkusch <markus@malkusch.de>.
+The original library was authored by Markus Malkusch <markus@malkusch.de>.
+This fork is maintained by rotdrop; Markus Malkusch is not responsible for
+rotdrop/php-index or its maintenance.
 
 ## Donations
 
